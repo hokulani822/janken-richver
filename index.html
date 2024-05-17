@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>janken-rich</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-yellow-100">
+
+    <!-- Header[start] -->
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-yellow-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-3xl">今日のご飯は何にしようかな？</span>
+          </a>
+        </div>
+      </header>
+    <!-- Header[end] -->
+
+    <!-- MainContents[start] -->
+    <section>
+      <h2 class="text-gray-600  flex mx-auto flex-wrap p-5 items-center container">２つの「食材」ボタンを押してね！食材の組み合わせに合ったおすすめ料理が表示されるよ！</h2>
+      <section class="text-gray-600 body-font">
+          <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-wrap -mx-4 -mb-10 text-center">
+                  <div class="w-full flex justify-center mb-10">
+                    <div class="sm:w-2/5 px-4">
+                      <div class="rounded-lg h-64 overflow-hidden">
+                        <img id="leftImage" alt="content" class="object-cover object-center h-full w-full" src="img/egg.jpeg">
+                      </div>
+                      <h2 id="leftTitle" class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">たまご</h2>
+                      <p id="leftDescription" class="leading-relaxed text-base">卵は良質なタンパク質やビタミンA、B群、D、鉄、亜鉛、セレンなどのミネラルを豊富に含む栄養価の高い食品です。また、健康的な不飽和脂肪酸や抗酸化物質のルテインとゼアキサンチンも含まれています。ただし、コレステロールが多いので摂取量に注意が必要です。</p>
+                      <button id="leftButton" class="flex mx-auto mt-6 text-white bg-yellow-500 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-600 rounded">食材①</button>
+                    </div>
+                    <div class="sm:w-1/5 px-4 flex justify-center items-center cross-container h-64 flex items-center">
+                      <span class="text-9xl leading-64">✕</span>
+                    </div>
+                    <div class="sm:w-2/5 px-4">
+                      <div class="rounded-lg h-64 overflow-hidden">
+                        <img id="rightImage" alt="content" class="object-cover object-center h-full w-full" src="img/rice.jpeg">
+                      </div>
+                      <h2 id="rightTitle" class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">ご飯</h2>
+                      <p id="rightDescription" class="leading-relaxed text-base">ご飯は主に炭水化物を提供し、エネルギー源として重要です。また、少量のタンパク質やビタミンB群、ミネラル（特に鉄やマグネシウム）も含まれています。白米よりも玄米の方が食物繊維や栄養価が高いです。</p>
+                      <button id="rightButton" class="flex mx-auto mt-6 text-white bg-yellow-500 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-600 rounded">食材②</button>
+                    </div>
+                  </div>
+                  <!-- 食材の組み合わせで出来る料理 -->
+                  <div class="w-full flex justify-center mb-10">
+                    <div class="sm:w-1/2 px-4">
+                      <div class="rounded-lg h-96 overflow-hidden">
+                        <img id="dishImage" alt="content" class="object-cover object-center h-full w-full" src="img/eggrice.jpeg">
+                      </div>
+                      <h2 id="dishTitle" class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">卵かけご飯</h2>
+                      <p id="dishDescription" class="leading-relaxed text-base">卵とご飯を組み合わせた簡単で栄養価の高い一品です。卵の良質なタンパク質とご飯の炭水化物がバランスよく摂取できます。</p>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </section>
+  </section>
+    <!-- MainContents[end] -->
+
+    <script>
+      const leftButton = document.getElementById('leftButton');
+      const leftImage = document.getElementById('leftImage');
+      const leftTitle = document.getElementById('leftTitle');
+      const leftDescription = document.getElementById('leftDescription');
+      const rightButton = document.getElementById('rightButton');
+      const rightImage = document.getElementById('rightImage');
+      const dishTitle = document.getElementById('dishTitle');
+      const dishDescription = document.getElementById('dishDescription');
+      const dishImage = document.getElementById('dishImage');
+    
+      const eggImage = 'img/egg.jpeg';
+      const meatImage = 'img/meat.jpeg'; 
+      const sakeImage = 'img/sake.jpeg'; 
+      const riceImage = 'img/rice.jpeg';
+      const tohuImage = 'img/tohu.jpeg';
+      const tomatoImage = 'img/tomato.jpeg';
+      const eggRiceImage = 'img/eggrice.jpeg';
+      const meatRiceImage = 'img/meatrice.jpeg';
+      const sakeRiceImage = 'img/sakerice.jpeg';
+      const eggTohuImage = 'img/eggtohu.jpeg';
+      const meatTohuImage = 'img/meattohu.jpeg';
+      const sakeTohuImage = 'img/saketohu.jpeg';
+      const eggTomatoImage = 'img/eggtomato.jpeg';
+      const meatTomatoImage = 'img/meattomato.jpeg';
+      const sakeTomatoImage = 'img/saketomato.jpeg';
+
+      leftButton.addEventListener('click', () => {
+  const randomIndex = Math.floor(Math.random() * 3); // 0 または 1 または２のランダムな値
+  const foodImage = randomIndex === 0 ? eggImage : randomIndex === 1 ? meatImage : sakeImage;
+
+  leftImage.src = foodImage;
+
+  if (foodImage === eggImage) {
+    leftTitle.textContent = 'たまご';
+    leftDescription.textContent = '卵は良質なタンパク質やビタミンA、B群、D、鉄、亜鉛、セレンなどのミネラルを豊富に含む栄養価の高い食品です。また、健康的な不飽和脂肪酸や抗酸化物質のルテインとゼアキサンチンも含まれています。ただし、コレステロールが多いので摂取量に注意が必要です。';
+  } else if (foodImage === sakeImage) {
+    leftTitle.textContent = '鮭';
+    leftDescription.textContent = '鮭は、良質なタンパク質とオメガ-3脂肪酸が豊富で、心血管の健康に良い影響を与えます。ビタミンDやB12、セレンも多く含まれており、骨や免疫機能の維持に役立ちます。抗酸化物質のアスタキサンチンも含まれ、健康促進に寄与します。';
+  } else {
+    leftTitle.textContent = '牛肉';
+    leftDescription.textContent = '牛肉は、質の高いタンパク質や鉄分、ビタミンB12が豊富です。亜鉛やビタミンB群も含み、エネルギーや筋肉の維持に役立ちます。脂肪分が多いため、部位や調理法によりカロリーに注意が必要です。';
+  }
+
+  updateDishInfo(); // 料理の情報を更新する関数を呼び出す
+});
+
+rightButton.addEventListener('click', () => {
+  const randomIndex = Math.floor(Math.random() * 3); // 0 または 1 または２のランダムな値
+  const food2Image = randomIndex === 0 ? riceImage : randomIndex === 1 ? tohuImage : tomatoImage;
+  rightImage.src = food2Image;
+
+  if (food2Image === riceImage) {
+    rightTitle.textContent = 'ご飯';
+    rightDescription.textContent = 'ご飯は主に炭水化物を提供し、エネルギー源として重要です。また、少量のタンパク質やビタミンB群、ミネラル（特に鉄やマグネシウム）も含まれています。白米よりも玄米の方が食物繊維や栄養価が高いです。';
+  } else if (food2Image === tomatoImage) {
+    rightTitle.textContent = 'トマト';
+    rightDescription.textContent = 'トマトは、ビタミンCやビタミンA、カリウムが豊富で、免疫力向上や血圧調整に役立ちます。リコピンという抗酸化物質を多く含み、がん予防や心血管の健康に効果的です。低カロリーで水分も多く、ダイエットに適しています。';
+  } else {
+    rightTitle.textContent = '豆腐';
+    rightDescription.textContent = '豆腐は、良質な植物性タンパク質やカルシウム、鉄分が豊富です。低カロリーでヘルシーな食品であり、ビタミンB群やマグネシウムも含まれています。消化が良く、ダイエットや健康管理に適した食材です。';
+  }
+
+  updateDishInfo(); // 料理の情報を更新する関数を呼び出す
+});
+
+function updateDishInfo() {
+  if (leftImage.src.includes(eggImage) && rightImage.src.includes(riceImage)) {
+    dishImage.src = eggRiceImage;
+    dishTitle.textContent = '卵かけご飯';
+    dishDescription.textContent = '卵かけご飯は、生卵を熱々のご飯にかけて醤油で味付けしたシンプルで旨味豊かな日本の定番料理です。卵の良質なタンパク質とご飯の炭水化物がバランスよく摂取できます。';
+  } else if (leftImage.src.includes(meatImage) && rightImage.src.includes(riceImage)) {
+    dishImage.src = meatRiceImage;
+    dishTitle.textContent = '牛丼';
+    dishDescription.textContent = '牛丼は、薄切り牛肉と玉ねぎを甘辛いタレで煮込み、ご飯の上に載せたシンプルで風味豊かな日本の定番料理です。肉の良質なタンパク質とご飯の炭水化物がバランスよく摂取できます。';
+  } else if (leftImage.src.includes(sakeImage) && rightImage.src.includes(riceImage)) {
+    dishImage.src = sakeRiceImage;
+    dishTitle.textContent = '鮭ご飯';
+    dishDescription.textContent = '鮭の炊き込みご飯は、鮭の旨味と風味がご飯に染み込んだ栄養豊富な和食です。';
+  } else if (leftImage.src.includes(eggImage) && rightImage.src.includes(tohuImage)) {
+    dishImage.src = eggTohuImage;
+    dishTitle.textContent = '卵豆腐';
+    dishDescription.textContent = '卵豆腐は、滑らかでクリーミーな食感の卵を使った冷製和風料理です。卵の良質なタンパク質と豆腐の植物性タンパク質がバランスよく摂取できます。';
+  } else if (leftImage.src.includes(meatImage) && rightImage.src.includes(tohuImage)) {
+    dishImage.src = meatTohuImage;
+    dishTitle.textContent = '肉豆腐';
+    dishDescription.textContent = '肉豆腐は、薄切り牛肉と豆腐を甘辛い出汁で煮込んだ、風味豊かな和風の煮物料理です。肉の良質なタンパク質と豆腐の植物性タンパク質がバランスよく摂取できます。';
+  } else if (leftImage.src.includes(sakeImage) && rightImage.src.includes(tohuImage)) {
+    dishImage.src = sakeTohuImage;
+    dishTitle.textContent = '鮭豆腐';
+    dishDescription.textContent = '鮭と豆腐を組み合わせた和風の煮物料理です。鮭の良質なタンパク質と豆腐の植物性タンパク質がバランスよく摂取できます。';
+  } else if (leftImage.src.includes(eggImage) && rightImage.src.includes(tomatoImage)) {
+    dishImage.src = eggTomatoImage;
+    dishTitle.textContent = '卵トマト';
+    dishDescription.textContent = '卵とトマトの中華スープは、ふわふわの卵とトマトの酸味が絶妙に調和したさっぱりとしたスープです。';
+  } else if (leftImage.src.includes(meatImage) && rightImage.src.includes(tomatoImage)) {
+    dishImage.src = meatTomatoImage;
+    dishTitle.textContent = '牛肉トマト';
+    dishDescription.textContent = '牛肉とトマトのオイスター炒めは、オイスターソースのコクとトマトの酸味が牛肉に絡む中華風の炒め物です。';
+  } else if (leftImage.src.includes(sakeImage) && rightImage.src.includes(tomatoImage)) {
+    dishImage.src = sakeTomatoImage;
+    dishTitle.textContent = '鮭トマト';
+    dishDescription.textContent = '鮭とトマトのパスタは、鮭の風味とトマトの酸味が絶妙に調和した栄養豊富な洋風料理です。';
+  } else {
+    dishImage.src = '';
+    dishTitle.textContent = 'mismatch';
+    dishDescription.textContent = 'マッチしませんでした';
+  }
+}
+
+    </script>
+
+</body>
+</html>
+
+
+       <!-- footer[start] --> 
+    <footer class="text-gray-600 body-font">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-yellow-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">今日のご飯</span>
+          </a>
+          <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2024 gs27 —
+            <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@hirashita</a>
+          </p>
+            </a>
+          </span>
+        </div>
+      </footer>
+     <!-- footer[end] --> 
+
+     
+</body>
+</html>

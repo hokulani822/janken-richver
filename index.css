@@ -1,0 +1,5 @@
+.description {
+    display: block;
+    margin-top: 1rem; /* 上部の余白を調整 */
+    margin-bottom: 1rem; /* 下部の余白を調整 */
+}
