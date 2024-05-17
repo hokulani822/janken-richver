@@ -7,7 +7,7 @@
 - 食材の組み合わせで出来る料理を教えてくれるアプリ
 
 ## ③DEMO
-- https://hokulani822.github.io/janken-rich/
+- [https://hokulani822.github.io/janken-rich/](https://hokulani822.github.io/janken-richver/)
 
 ## ④作ったアプリケーション用のIDまたはPasswordがある場合
 
